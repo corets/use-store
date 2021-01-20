@@ -91,7 +91,7 @@ describe("useStore", () => {
     expect(sharedStore.get()).toEqual({ foo: "baz" })
     expect(renders).toBe(2)
 
-    act(() => receivedStore.add({ foo: "bar", ding: "dong" }))
+    act(() => receivedStore.put({ foo: "bar", ding: "dong" }))
 
     expect(target().text()).toBe("bar")
     expect(sharedStore.get()).toEqual({ foo: "bar", ding: "dong" })
@@ -121,7 +121,7 @@ describe("useStore", () => {
     expect(sharedStore.get()).toEqual({ foo: "baz", yolo: "swag" })
     expect(renders).toBe(7)
 
-    act(() => sharedStore.add({ foo: "bar", ding: "dong" } as any))
+    act(() => sharedStore.put({ foo: "bar", ding: "dong" } as any))
 
     expect(target().text()).toBe("bar")
     expect(sharedStore.get()).toEqual({
