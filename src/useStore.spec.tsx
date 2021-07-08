@@ -97,29 +97,17 @@ describe("useStore", () => {
     expect(sharedStore.get()).toEqual({ foo: "bar", ding: "dong" })
     expect(renders).toBe(3)
 
-    act(() => receivedStore.reset())
+    act(() => sharedStore.set({ foo: "bar" }))
 
     expect(target().text()).toBe("bar")
     expect(sharedStore.get()).toEqual({ foo: "bar" })
     expect(renders).toBe(4)
 
-    act(() => receivedStore.reset({ foo: "baz", yolo: "swag" }))
-
-    expect(target().text()).toBe("baz")
-    expect(sharedStore.get()).toEqual({ foo: "baz", yolo: "swag" })
-    expect(renders).toBe(5)
-
-    act(() => sharedStore.set({ foo: "bar" }))
-
-    expect(target().text()).toBe("bar")
-    expect(sharedStore.get()).toEqual({ foo: "bar" })
-    expect(renders).toBe(6)
-
     act(() => sharedStore.set({ foo: "baz", yolo: "swag" } as any))
 
     expect(target().text()).toBe("baz")
     expect(sharedStore.get()).toEqual({ foo: "baz", yolo: "swag" })
-    expect(renders).toBe(7)
+    expect(renders).toBe(5)
 
     act(() => sharedStore.put({ foo: "bar", ding: "dong" } as any))
 
@@ -129,18 +117,6 @@ describe("useStore", () => {
       yolo: "swag",
       ding: "dong",
     })
-    expect(renders).toBe(8)
-
-    act(() => sharedStore.reset())
-
-    expect(target().text()).toBe("baz")
-    expect(sharedStore.get()).toEqual({ foo: "baz", yolo: "swag" })
-    expect(renders).toBe(9)
-
-    act(() => sharedStore.reset({ foo: "baz", yolo: "swag" } as any))
-
-    expect(target().text()).toBe("baz")
-    expect(sharedStore.get()).toEqual({ foo: "baz", yolo: "swag" })
-    expect(renders).toBe(9)
+    expect(renders).toBe(6)
   })
 })
